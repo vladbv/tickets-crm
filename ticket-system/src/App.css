@@ -1,6 +1,30 @@
 .App {
 }
 
+.default-layout{
+display:grid;
+grid-template-rows:80px auto 3rem;
+grid-template-areas:
+"header"
+"main"
+"footer"
+
+}
+header{
+grid-area:header;
+}
+main{
+grid-area:main;
+min-height:88vh;
+}
+
+footer{
+	background:black;
+	padding:1rem;
+grid-area:footer;
+color:white;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
