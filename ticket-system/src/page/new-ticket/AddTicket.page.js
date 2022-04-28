@@ -4,6 +4,12 @@ import {PageBreadcrumb} from '../../components/breadcrumb/Breadcrumb.comp'
 import {AddTicketForm} from '../../components/add-ticket-form/AddTicketForm.comp'
 
 export const AddTicket = () => {
+	
+	const handleOnChange = (e) => {
+const {name, value} = e.target
+		console.log(name, value);
+	};
+
 return ( 
 <div>
 	<Container>
@@ -15,7 +21,7 @@ return (
 	</Row>
 <Row>
 <Col>
-Form is here
+<AddTicketForm handleOnChange={handleOnChange} />
 	</Col>
 	</Row>
 
