@@ -1,18 +1,21 @@
 [
 	{
 		"id": 1,
+		"subject": "SSL has to be renewed",
 		"status": "Client response is pending",
 		"addedAt": "2022-01-07"
 
 	},
 	{
 		"id": 2,
-		"status": "Client response is pending",
+		"subject": "SSL has to be renewed",	
+  		"status": "Client response is pending",
 		"addedAt": "2022-01-07"
 
 	},
 {
 		"id": 3,
+		"subject": "SSL has to be renewed",	
 		"status": "Client response is done",
 		"addedAt": "2022-01-07"
 
@@ -21,6 +24,7 @@
 
 {
 		"id": 4,
+		"subject": "SSL has to be renewed",	
 		"status": "Client response is pending",
 		"addedAt": "2022-01-07"
 

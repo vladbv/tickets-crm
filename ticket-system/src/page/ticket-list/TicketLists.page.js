@@ -7,12 +7,23 @@ import tickets from '../../assets/data/dummy-tickets.json';
 export const TicketLists = () => {
     
     const [str, setStr] = useState('')
-    useEffect( () => {}, [str]);
+	const [dispTicket, setDispTicket] = useState('');
+    useEffect( () => {
+    setDispTicket(tickets)
+    }, [str, dispTicket]);
 
 const handleOnChange = (e) => {
-    setStr(e.target.value);
+	const {value} = e.target.value;
+    setStr(value);
+	searchTicket(value);
 console.log(e.target);
     }
+	const searchTicket = sttr => {
+		const displayTickets = tickets.filter(row => row.subject.toLowerCase().includes(sttr))
+		includes(sttr.toLowerCase())
+
+		setDispTicket(displayTickets)
+	}
 return (
 <Container>
 <Row>
@@ -23,7 +34,7 @@ return (
     </Col>
     </Row>
 
-<Row>
+<Row className="mt-4">
 <Col>
 <Button variant="info">Add New Ticket</Button>
 
@@ -35,7 +46,7 @@ return (
     <hr />
 <Row>
 <Col>
-<TicketTable tickets={tickets} />
+<TicketTable tickets={dispTicket} />
 
     </Col>
     </Row>
