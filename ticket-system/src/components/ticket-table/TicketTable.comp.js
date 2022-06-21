@@ -39,3 +39,8 @@ return(
 )
 
 }
+
+TicketTable.propTypes = { 
+    tickets: PropTypes.array.isRequired,
+
+}

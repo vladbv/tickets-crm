@@ -1,14 +1,14 @@
 [
 	{
 		"id": 1,
-		"subject": "SSL has to be renewed",
+		"subject": "Email certificate problem",
 		"status": "Client response is pending",
 		"addedAt": "2022-01-07"
 
 	},
 	{
 		"id": 2,
-		"subject": "SSL has to be renewed",	
+		"subject": "Issue with e-mail certificate",	
   		"status": "Client response is pending",
 		"addedAt": "2022-01-07"
 
