@@ -3,7 +3,26 @@
 		"id": 1,
 		"subject": "Email certificate problem",
 		"status": "Client response is pending",
-		"addedAt": "2022-01-07"
+		"addedAt": "2022-01-07",
+        "history": [
+            {
+               "date": "20-10-10",
+               "message": "John is great",
+               "messageBy": "client"
+            },
+            {
+               "date": "20-10-10",
+               "message": "John is great",
+               "messageBy": "operator"
+            },
+            {
+               "date": "20-10-10",
+               "message": "John is great",
+               "messageBy": "client"
+            }
+
+
+        ]
 
 	},
 	{
