@@ -7,6 +7,7 @@ import {UpdateTicket} from '../../components/update-ticket/UpdateTicket.comp'
 const ticket = tickets[0];
 
 export const Ticket = () => {
+	const [message, setMessage] = useState('');
 return (
 <Container>
 <Row>
@@ -15,7 +16,7 @@ return (
     </Col>
     </Row>
     <Row>
-    <Col>
+    <Col className="text-weight-bolder text-secondary"	>
 <div className="subject">Subject: {ticket.subject}</div>
 <div className="date">Date: {ticket.addedAt}</div>
 <div className="status">Status: {ticket.status}</div>
@@ -32,7 +33,7 @@ return (
     <hr />
  <Row className="mt-4">
         <Col>
-    <UpdateTicket />
+    <UpdateTicket msg="message" />
     </Col>
     </Row>
     </Container>
