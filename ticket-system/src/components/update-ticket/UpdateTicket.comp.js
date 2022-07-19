@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types';
 import {Form, Button} from 'react-bootstrap'
-export const UpdateTicket = ({msg, handleOnChange}) => {
+export const UpdateTicket = ({msg, handleOnChange, handleOnSubmit}) => {
     return (
-            <Form>
+            <Form onSubmit={handleOnSubmit}>
 <Form.Label>Reply</Form.Label>
 <Form.Text>Please reply your message here or update the ticket</Form.Text>
 <Form.Control as="textarea" value={msg} onChange={handleOnChange} row="5" name="detail" />
@@ -16,8 +16,9 @@ export const UpdateTicket = ({msg, handleOnChange}) => {
     )
 }
 
-MessageHistory.propTypes = {
+UpdateTicket.propTypes = {
 	handleOnChange: PropTypes.func.isRequired,
+    handleOnSubmit: PropTypes.func.isRequired,
 	msg: PropTypes.string.isRequired,
 	
 };

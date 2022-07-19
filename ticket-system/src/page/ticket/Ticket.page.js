@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import {Container, Row, Col, Button} from 'react-bootstrap'
 import {PageBreadcrumb} from '../../components/breadcrumb/Breadcrumb.comp'
 import tickets from '../../assets/data/dummy-tickets.json'
@@ -8,6 +8,18 @@ const ticket = tickets[0];
 
 export const Ticket = () => {
 	const [message, setMessage] = useState('');
+    
+    useEffect( () => {
+
+    }, [message])
+
+    const handleOnChange = e => {
+        setMessage(e.target.value);
+    }
+
+    const handleOnSubmit = () => {
+        alert('Form Submitted');
+    }
 return (
 <Container>
 <Row>
@@ -18,7 +30,7 @@ return (
     <Row>
     <Col className="text-weight-bolder text-secondary"	>
 <div className="subject">Subject: {ticket.subject}</div>
-<div className="date">Date: {ticket.addedAt}</div>
+<div className="date">Ticket Opened: {ticket.addedAt}</div>
 <div className="status">Status: {ticket.status}</div>
     </Col>
     <Col className="text-right">
@@ -33,7 +45,10 @@ return (
     <hr />
  <Row className="mt-4">
         <Col>
-    <UpdateTicket msg="message" />
+    <UpdateTicket msg={message}
+    handleOnChange={handleOnChange}
+    handleOnSubmit={handleOnSubmit}
+    />
     </Col>
     </Row>
     </Container>

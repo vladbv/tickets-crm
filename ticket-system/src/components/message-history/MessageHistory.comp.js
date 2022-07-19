@@ -9,11 +9,11 @@ export const MessageHistory = ({msg}) => {
                 <div className="sender">{row.messageBy}</div>
                 <div className="date">{row.date}</div>
             </div>
-        <div classnName="message">{row.message}</div>
+        <div className="message">{row.message}</div>
         </div>
     ));
 }
 
 MessageHistory.propTypes = {
-    msg: PropTypes.object.isRequired    
+    msg: PropTypes.array.isRequired    
 }
