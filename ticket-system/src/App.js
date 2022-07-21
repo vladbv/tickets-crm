@@ -35,7 +35,7 @@
         <TicketLists />
         </PrivateRoute>
   
-        <PrivateRoute path="/ticket/:tid" >
+        <PrivateRoute path="/ticket/:tId" >
         <Ticket />
         </PrivateRoute>
         

@@ -4,9 +4,12 @@ import {PageBreadcrumb} from '../../components/breadcrumb/Breadcrumb.comp'
 import tickets from '../../assets/data/dummy-tickets.json'
 import {MessageHistory} from '../../components/message-history/MessageHistory.comp'
 import {UpdateTicket} from '../../components/update-ticket/UpdateTicket.comp'
+import {useParams} from 'react-router-dom'
 const ticket = tickets[0];
 
 export const Ticket = () => {
+
+    const {tId} = useParams();
 	const [message, setMessage] = useState('');
     
     useEffect( () => {
@@ -29,6 +32,7 @@ return (
     </Row>
     <Row>
     <Col className="text-weight-bolder text-secondary"	>
+    {tId}
 <div className="subject">Subject: {ticket.subject}</div>
 <div className="date">Ticket Opened: {ticket.addedAt}</div>
 <div className="status">Status: {ticket.status}</div>

@@ -6,6 +6,7 @@ export const PrivateRoute = ({children, ...rest}) => {
 
 return(
     <Route 
+    {...rest}
     render={() =>
     (isAuth ? <DefaultLayout> {children}</DefaultLayout> : <Redirect to="/" />)
     }
