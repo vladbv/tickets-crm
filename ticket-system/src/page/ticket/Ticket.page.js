@@ -48,7 +48,7 @@ return (
     </Row>
     <Row className="mt-4">
         <Col>
-        <MessageHistory msg={ticket.history} />
+    {ticket.history &&   <MessageHistory msg={ticket.history} /> }
     </Col>
     </Row>
     <hr />

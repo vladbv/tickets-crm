@@ -5,6 +5,7 @@ export const UpdateTicket = ({msg, handleOnChange, handleOnSubmit}) => {
     return (
             <Form onSubmit={handleOnSubmit}>
 <Form.Label>Reply</Form.Label>
+        <br />
 <Form.Text>Please reply your message here or update the ticket</Form.Text>
 <Form.Control as="textarea" value={msg} onChange={handleOnChange} row="5" name="detail" />
 	    <div className="text-right mt-3 mb-3">
