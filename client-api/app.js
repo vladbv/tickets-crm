@@ -22,9 +22,24 @@ app.use(bodyParser.json());
 
 const port = process.env.PORT || 3001
 
-app.use('/', (req, res) => {
-res.json({message: 'Test!'});
+// Load routers
+const userRouter = require("./src/routers/user.router")
+const ticketRouter = require("./src/routers/ticket.router")
+
+app.use("/v1/user", userRouter);
+app.use("/v1/ticket", ticketRouter);
+
+// Error handler
+const handleError = require('./src/utils/errorHandler')
+
+app.use( (req, res, next) => {
+    const error = new Error('Resource is not found')
+    error.status = 404;
+    next(error)
 })
+app.use((error, req, res, next) => {
+handleError(error, res);
+});  
 
 app.listen(port, () => {
 console.log(`API is ready on http://localhost:${port}`);
