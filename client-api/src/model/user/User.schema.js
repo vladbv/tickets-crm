@@ -6,12 +6,12 @@ const UserSchema = new Schema({
     name: {
         type: String,
         maxlength: 50,
-        required: true
+        required: true,
     },
     company: {
         type: String,
         maxlength: 50,
-        required: true
+        required: true,
     },   
     address: {
         type: String,
@@ -24,19 +24,19 @@ const UserSchema = new Schema({
     email: {
         type: String,
         maxlength: 50,
-        required: true
+        required: true,
     },    
     password: {
         type: String,
         minlength: 8,
         maxlength: 100,
-        required: true
+        required: true,
     },  
     refreshJWT: {
         token: {
         type: String,
         maxlength: 500,
-        default: ''
+        default: "",
     },
         addedAt: {
          type: Date,
