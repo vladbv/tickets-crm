@@ -1,12 +1,50 @@
 ### User Sign up endpoint
 POST http://localhost:3001/v1/user/login
 Content-Type: application/json
+
 {
-"name": "Vl Bl",
+"name": "Vlad Bl",
 "company": "Company name",
 "address": "ul. Test",
 "phone": "08828285",
-"email": "vladb23@gmail.com",
-"password": "123456789",
-
+"email": "vladb2368@gmail.com",
+"password": "123456789"
 }
+
+### User Sign in endpoint
+
+POST http://localhost:3001/v1/user/login
+Content-Type: application/json
+
+{
+"email": "vladb2368@gmail.com",
+"password": "123456789"
+}
+
+### User sing up endpoint
+POST http://localhost:3001/v1/user
+Content-Type: application/json
+
+{
+    "name": "Prem Acharya",
+    "company": "Company name",
+    "address": "Some address Sydney",
+    "phone": "041000000",
+    "email": "e2@e.com1",
+    "password": "secret222"
+}
+
+### User sing in endpoint
+POST http://localhost:3001/v1/user/login
+Content-Type: application/json 
+
+{
+    "email": "e2@e.com1",
+     "password": "secret222"   
+}
+
+### Get a user profile endpoint
+GET  http://localhost:3001/v1/user
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InZsYWRiMjNAZ21haWwuY29tIiwiaWF0IjoxNjYxMDkzMjc1LCJleHAiOjE2NjEwOTQxNzV9.q5mUVK2C2UQOKPMGgbrxHOdAtMHKRSaxQGI1YZGnFrU
+
+

@@ -39,32 +39,38 @@ router.post('/', async (req, res) => {
   });
 // User sign in Router
 
-router.post("/login", async(req, res) => {
-    console.log(req.body)
-    const {email, password} = req.body;
-    // get user with email from db
-    // hash our password  and compare with the db one
-    if(!email || !password) {
-   return res.json({status: "invalid", message: "Inable to login"})
-    }
-    const user = await getUserByEmail(email)
-    console.log(user)
-    const passFromDb = user && user._id ? user.password : null
-    if(!passFromDb)  return res.json({ status: "error", message: "Invalid email or password!"})
+router.post("/login", async (req, res) => {
+	console.log(req.body);
 
-   const result = await comparePassword(password, passFromDb)
-   if(!result){
-    res.json({ status: "error", message: "Invalid email or password"})
-   
-   }
-    const accessJWT = await createAccessJWT(user.email, `${user._id}`)
-    const refreshJWT = await createRefreshJWT(user.email, `${user._id}`)
-        console.log(result)
-    res.json({ status: "success", 
-        message: "Logged in successfully", 
-        accessJWT,
-        refreshJWT
-    })
+	const { email, password } = req.body;
+
+	if (!email || !password) {
+		return res.json({ status: "error", message: "Invalid form submition!" });
+	}
+
+	const user = await getUserByEmail(email);
+
+
+	const passFromDb = user && user._id ? user.password : null;
+
+	if (!passFromDb)
+		return res.json({ status: "error", message: "Invalid email or password!" });
+
+	const result = await comparePassword(password, passFromDb);
+
+	if (!result) {
+		return res.json({ status: "error", message: "Invalid email or password!" });
+	}
+
+	const accessJWT = await createAccessJWT(user.email, `${user._id}`);
+	const refreshJWT = await createRefreshJWT(user.email, `${user._id}`);
+
+	res.json({
+		status: "success",
+		message: "Login Successfully!",
+		accessJWT,
+		refreshJWT,
+	});
 });
 
 module.exports = router;

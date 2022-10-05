@@ -1,7 +1,9 @@
 const redis = require('redis');
 
+// If redis version is > 3.0, bear in mind you must use client.connect()
+
 const client = redis.createClient(process.env.REDIS_URL);
-client.connect();
+
 client.on('error', function(error) {
     console.log(error);
 });
@@ -11,31 +13,35 @@ const setJWT = (key, value) => {
         try{
    client.set(key, value, (err, res) => {
         if(err) reject(err)
-       resolve(res);
+       resolve(res); 
     });   
         }
         catch(error) {
-        reject(err);
+        reject(error);
         } 
     });
    
 }
 
-const getJWT = (key, value) => {
+const getJWT = (key) => {
     return new Promise((resolve, reject) => {
         try{
-    client.get("key", (err, res) => {
+    client.get(key, (err, res) => {
         if(err) reject(err)
        resolve(res);
     });     }
         catch(error) {
-        reject(err);
+        reject(error);
         } 
     });
    
 }
 
+
+
+
+
 module.exports = {
     setJWT,
-    getJWT
+    getJWT,  
 }
