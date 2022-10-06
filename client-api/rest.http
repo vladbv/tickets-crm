@@ -43,8 +43,13 @@ Content-Type: application/json
      "password": "secret222"   
 }
 
+
+### User endpoint
+GET http://localhost:3001/v1/user/
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InZsYWRiMjM2OEBnbWFpbC5jb20iLCJpYXQiOjE2NjUwOTE3NDIsImV4cCI6MTY2NTE3ODE0Mn0.zPul1sclH6WGSz38D2yBYF6WEmZ81TgIv0dbLrNN8BM
+
+
+
 ### Get a user profile endpoint
 GET  http://localhost:3001/v1/user
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InZsYWRiMjNAZ21haWwuY29tIiwiaWF0IjoxNjYxMDkzMjc1LCJleHAiOjE2NjEwOTQxNzV9.q5mUVK2C2UQOKPMGgbrxHOdAtMHKRSaxQGI1YZGnFrU
-
-
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InZsYWRiMjM2OEBnbWFpbC5jb20iLCJpYXQiOjE2NjUwOTE3NDIsImV4cCI6MTY2NTE3ODE0Mn0.zPul1sclH6WGSz38D2yBYF6WEmZ81TgIv0dbLrNN8BM

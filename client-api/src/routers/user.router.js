@@ -5,11 +5,24 @@ const router = express.Router()
 const {insertUser, getUserByEmail} = require('../model/user/User.model');
 const {hashPassword, comparePassword} = require('../helpers/bcrypt.helper');
 const {createAccessJWT, createRefreshJWT} = require('../helpers/jwt.helper');
-
+const {userAuthorization} = require('../middleware/authorization.middleware')
 router.all('/',  (req, res, next) => { 
 //res.json({message: "return form user router"})
 next();
 });
+
+router.get('/', userAuthorization, (req, res) => {
+    const user = {
+        "name": "Vlad Bl",
+        "company": "Company name",
+        "address": "ul. Test",
+        "phone": "08828285",
+        "email": "vladb2368@gmail.com",
+        "password": "123456789"
+    }
+    res.json({user})
+})
+
 
 // Creating a new user route
 router.post('/', async (req, res) => {
@@ -72,5 +85,7 @@ router.post("/login", async (req, res) => {
 		refreshJWT,
 	});
 });
+
+
 
 module.exports = router;
