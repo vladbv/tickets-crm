@@ -2,7 +2,7 @@ const express = require("express")
 const {route} = require("./ticket.router");
 const router = express.Router()
 
-const {insertUser, getUserByEmail} = require('../model/user/User.model');
+const {insertUser, getUserByEmail, getUserById} = require('../model/user/User.model');
 const {hashPassword, comparePassword} = require('../helpers/bcrypt.helper');
 const {createAccessJWT, createRefreshJWT} = require('../helpers/jwt.helper');
 const {userAuthorization} = require('../middleware/authorization.middleware')
@@ -11,16 +11,13 @@ router.all('/',  (req, res, next) => {
 next();
 });
 
-router.get('/', userAuthorization, (req, res) => {
-    const user = {
-        "name": "Vlad Bl",
-        "company": "Company name",
-        "address": "ul. Test",
-        "phone": "08828285",
-        "email": "vladb2368@gmail.com",
-        "password": "123456789"
-    }
-    res.json({user})
+router.get('/', userAuthorization, async (req, res) => {
+    
+    const _id = req.userId
+    
+    const userProf = await getUserById(_id)
+
+    res.json({user: userProf})
 })
 
 

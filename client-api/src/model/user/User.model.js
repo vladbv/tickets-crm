@@ -72,6 +72,6 @@ const getUserByEmail = (email) => {
 module.exports = {
     insertUser,
     getUserByEmail,
-    getUserById,
+    getUserById, 
     storeUserRefreshJWT,
 }
