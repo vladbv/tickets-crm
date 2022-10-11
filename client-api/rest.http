@@ -52,3 +52,8 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InZsYWRiMjM2OEBn
 ### Get a user profile endpoint
 GET  http://localhost:3001/v1/user
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InZsYWRiMjM2OEBnbWFpbC5jb20iLCJpYXQiOjE2NjU0MzQwMjIsImV4cCI6MTY2NTUyMDQyMn0.aUCzln9ulD3q34S-BwjfEI35Dbdc6d38IV0zTaLHTkU
+
+### Get refreshed token
+
+GET http://localhost:3001/v1/tokens
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InZsYWRiMjM2OEBnbWFpbC5jb20iLCJpYXQiOjE2NjU0MzQxNDUsImV4cCI6MTY2ODAyNjE0NX0.r3jVlhZqczDHBb14YlMigC_aFPDhwytuU_VTJCZK8a0

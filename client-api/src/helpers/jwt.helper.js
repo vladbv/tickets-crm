@@ -40,8 +40,19 @@ const verifyAccessJWT = (userJWT) => {
     }
 }
 
+
+const verifyRefreshJWT = (userJWT) => {
+  try{
+      return Promise.resolve(jwt.verify(userJWT, process.env.JWT_REFRESH_SECRET))
+    
+  } catch (err) {
+    return Promise.resolve(err)
+  }
+}
+
 module.exports = {
     createRefreshJWT,
     createAccessJWT,
-    verifyAccessJWT
+    verifyAccessJWT,
+    verifyRefreshJWT,
 }
