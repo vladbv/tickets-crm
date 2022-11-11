@@ -51,7 +51,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InZsYWRiMjM2OEBn
 
 ### Get a user profile endpoint
 GET  http://localhost:3001/v1/user
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InZsYWRiMjM2OEBnbWFpbC5jb20iLCJpYXQiOjE2NjU0MzQwMjIsImV4cCI6MTY2NTUyMDQyMn0.aUCzln9ulD3q34S-BwjfEI35Dbdc6d38IV0zTaLHTkU
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InZsYWRiMjM2OEBnbWFpbC5jb20iLCJpYXQiOjE2NjgxOTg1MTYsImV4cCI6MTY2ODI4NDkxNn0.VoYuzw95DXx530bhQGzcsB-H6_IPFdjSe-rSpWys6jo
 
 ### Get refreshed token
 

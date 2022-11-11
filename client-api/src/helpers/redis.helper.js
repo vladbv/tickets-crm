@@ -37,6 +37,13 @@ const getJWT = (key) => {
    
 }
 
+const deleteJWT = (key) => {
+    try{
+        client.del(key)
+    } catch (err) {
+        console.log(err)
+    }
+}
 
 
 
@@ -44,4 +51,5 @@ const getJWT = (key) => {
 module.exports = {
     setJWT,
     getJWT,  
+    deleteJWT,
 }

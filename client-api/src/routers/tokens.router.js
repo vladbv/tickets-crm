@@ -1,7 +1,7 @@
 const express = require('express');
 const router =  express.Router();
 
-const {verifyRefreshJWT, createRefreshJWT} = require("../helpers/jwt.helper")
+const {verifyRefreshJWT, createAccessJWT} = require("../helpers/jwt.helper")
 const {getUserByEmail} = require("../model/user/User.model")
 // returning refresh jwt
 router.get("/", async (req, res, next) => {
@@ -11,8 +11,9 @@ router.get("/", async (req, res, next) => {
     if(decoded.email) {
         const userProf = await getUserByEmail(decoded.email);
         if(userProf._id){
-            res.status(403).json({message: userProf});
             let tokenExp = userProf.refreshJWT.addedAt;
+            const dbRefreshToken = userProf.refreshJWT.token;
+
             tokenExp = tokenExp.setDate(
                 tokenExp.getDate() + +process.env.JWT_REFRESH_SECRET_EXP_DAY
                 )
@@ -20,11 +21,11 @@ router.get("/", async (req, res, next) => {
             console.log(new Date(tokenExp))
         
         const today = new Date();
-            if(tokenExp < today){
-                res.status(403).json({message: "Forbidden"})
+            if(dbRefreshToken !== authorization && tokenExp < today){
+             return   res.status(403).json({message: "Forbidden"})
             }
-            const accessJWT  = await createRefreshJWT(decoded.email, userProf._id)
-            res.json({status: "success", accessJWT})
+            const accessJWT  = await createAccessJWT(decoded.email, userProf._id.toString())
+          return  res.json({status: "success", accessJWT})
         }
         
 
