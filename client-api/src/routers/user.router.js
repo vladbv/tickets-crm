@@ -84,5 +84,19 @@ router.post("/login", async (req, res) => {
 });
 
 
+router.post('/reset-password', async (req, res) => {
+    const {email} = req.body;
+    
+    const user = await getUserByEmail(email)
+
+    if(user && user.id){
+        res.json(user);
+
+    }
+
+    res.json({status: "error", messsage: "The email seems to not exist in our database..."})
+
+});
+
 
 module.exports = router;

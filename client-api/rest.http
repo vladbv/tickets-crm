@@ -57,3 +57,12 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InZsYWRiMjM2OEBn
 
 GET http://localhost:3001/v1/tokens
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InZsYWRiMjM2OEBnbWFpbC5jb20iLCJpYXQiOjE2Njc5Mjc1MDEsImV4cCI6MTY3MDUxOTUwMX0.ridLEwIBFvemA0usMnFDOusnvvqqU55ZXPGV6HzmL3w
+
+
+### Password request endpoint
+POST http://localhost:3001/v1/user/reset-password
+Content-Type: application/json 
+
+{
+   "email": "vladb2368@gmail.com"
+}
