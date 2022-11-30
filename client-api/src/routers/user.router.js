@@ -5,7 +5,8 @@ const router = express.Router()
 const {insertUser, getUserByEmail, getUserById} = require('../model/user/User.model');
 const {hashPassword, comparePassword} = require('../helpers/bcrypt.helper');
 const {createAccessJWT, createRefreshJWT} = require('../helpers/jwt.helper');
-const {userAuthorization} = require('../middleware/authorization.middleware')
+const {userAuthorization} = require('../middleware/authorization.middleware');
+const { setPasswordRestPin } = require("../model/reset-pin/resetPin.model");
 router.all('/',  (req, res, next) => { 
 //res.json({message: "return form user router"})
 next();
@@ -88,13 +89,15 @@ router.post('/reset-password', async (req, res) => {
     const {email} = req.body;
     
     const user = await getUserByEmail(email)
-
-    if(user && user.id){
-        res.json(user);
-
+ 
+    if(user && user._id){
+        const setPin = await setPasswordRestPin(email)
+        return res.json(setPin);
     }
 
-    res.json({status: "error", messsage: "The email seems to not exist in our database..."})
+    res.json({status: "error", 
+    messsage: "The email seems to not exist in our database..."
+});
 
 });
 

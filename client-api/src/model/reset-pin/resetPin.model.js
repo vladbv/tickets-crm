@@ -1,7 +1,7 @@
 const { token } = require("morgan");
-const { RestPinSchema } = require("./RestPin.schema");
+const { ResetPinSchema } = require("./resetPin.schema");
 
-const setPasswordRestPin = (userObj) => {
+const setPasswordRestPin = (email) => {
   
   const randPin = 6252642;
 
@@ -11,7 +11,7 @@ const setPasswordRestPin = (userObj) => {
   }
 
   return new Promise((resolve, reject) => {
-    RestPinSchema(restObj)
+    ResetPinSchema(restObj)
       .save()
       .then((data) => resolve(data))
       .catch((error) => reject(error));

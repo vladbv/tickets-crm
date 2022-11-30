@@ -18,5 +18,5 @@ const ResetPinSchema = new Schema({
 });
 
 module.exports = {
-    ResetPinSchema: mongoose.model("User", ResetPinSchema),
+    ResetPinSchema: mongoose.model("ResetPin", ResetPinSchema),
   };
