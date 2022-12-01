@@ -1,13 +1,15 @@
 const { token } = require("morgan");
+const { randomPinNumber } = require("../../utils/randomGenerator");
 const { ResetPinSchema } = require("./resetPin.schema");
 
-const setPasswordRestPin = (email) => {
+const setPasswordRestPin = async (email) => {
   
-  const randPin = 6252642;
+  const pinLength = 6;
+  const randPin = await randomPinNumber(pinLength);
 
   const restObj = {
     email,
-    pin: randPin
+    pin: randPin,
   }
 
   return new Promise((resolve, reject) => {
