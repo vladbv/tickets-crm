@@ -7,6 +7,7 @@ const {hashPassword, comparePassword} = require('../helpers/bcrypt.helper');
 const {createAccessJWT, createRefreshJWT} = require('../helpers/jwt.helper');
 const {userAuthorization} = require('../middleware/authorization.middleware');
 const { setPasswordRestPin } = require("../model/reset-pin/resetPin.model");
+const { emailProcessor } = require("../helpers/email.helper");
 router.all('/',  (req, res, next) => { 
 //res.json({message: "return form user router"})
 next();
@@ -92,7 +93,18 @@ router.post('/reset-password', async (req, res) => {
  
     if(user && user._id){
         const setPin = await setPasswordRestPin(email)
-        return res.json(setPin);
+        const result = await emailProcessor(email, setPin.pin)
+       
+        if(result && result.messageId){
+            return res.json({status: "success", 
+            messsage: "The email seems to not exist in our database..."
+        });
+        }
+
+        return res.json({status: "success", 
+        messsage: "Unable to process"
+    });
+
     }
 
     res.json({status: "error", 
