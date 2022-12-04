@@ -6,8 +6,10 @@ const {insertUser, getUserByEmail, getUserById} = require('../model/user/User.mo
 const {hashPassword, comparePassword} = require('../helpers/bcrypt.helper');
 const {createAccessJWT, createRefreshJWT} = require('../helpers/jwt.helper');
 const {userAuthorization} = require('../middleware/authorization.middleware');
-const { setPasswordRestPin } = require("../model/reset-pin/resetPin.model");
+const { setPasswordRestPin, getPinByEmailPin } = require("../model/reset-pin/resetPin.model");
 const { emailProcessor } = require("../helpers/email.helper");
+
+
 router.all('/',  (req, res, next) => { 
 //res.json({message: "return form user router"})
 next();
@@ -113,5 +115,12 @@ router.post('/reset-password', async (req, res) => {
 
 });
 
+router.patch('/reset-password', async (req, res) => {
+    const {email, pin, newPassword} = req.body;
+
+    const getPin = await getPinByEmailPin(email, pin);
+
+    res.json(getPin);
+});
 
 module.exports = router;

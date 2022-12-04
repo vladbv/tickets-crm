@@ -66,3 +66,14 @@ Content-Type: application/json
 {
    "email": "vladb2368@gmail.com"
 }
+
+
+### Password request endpoint
+PATCH http://localhost:3001/v1/user/reset-password
+Content-Type: application/json 
+
+{
+   "email": "vladb2368@gmail.com",
+   "pin" : "493067",
+   "newPassword": "passw2ord1"
+}

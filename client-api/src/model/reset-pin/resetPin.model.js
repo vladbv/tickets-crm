@@ -19,7 +19,27 @@ const setPasswordRestPin = async (email) => {
       .catch((error) => reject(error));
   });
 };
-  
-module.exports = {
+ 
+const getPinByEmailPin = (email, pin) => {
+  return new Promise((resolve, reject) => {
+    try{
+      ResetPinSchema.findOne({email, pin}, (error, data) => {
+        if(error) {
+          console.log(error)
+          resolve(false)
+        }
+
+        resolve(data);
+      });
+    } catch(err){
+      reject(err);
+      console.log(err)
+    }
+  });
+
+};
+
+module.exports = {    
  setPasswordRestPin,
+ getPinByEmailPin
 }
