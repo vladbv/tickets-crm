@@ -95,17 +95,11 @@ router.post('/reset-password', async (req, res) => {
  
     if(user && user._id){
         const setPin = await setPasswordRestPin(email)
-        const result = await emailProcessor(email, setPin.pin)
+        await emailProcessor(email, setPin.pin)
        
-        if(result && result.messageId){
             return res.json({status: "success", 
-            messsage: "The email seems to not exist in our database..."
+            messsage: "If the email exists in our database, it will receive a pin."
         });
-        }
-
-        return res.json({status: "success", 
-        messsage: "Unable to process"
-    });
 
     }
 
@@ -119,7 +113,9 @@ router.patch('/reset-password', async (req, res) => {
     const {email, pin, newPassword} = req.body;
 
     const getPin = await getPinByEmailPin(email, pin);
+        if(getPin._id){
 
+        }
     res.json(getPin);
 });
 
