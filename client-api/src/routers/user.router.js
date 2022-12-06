@@ -2,7 +2,7 @@ const express = require("express")
 const {route} = require("./ticket.router");
 const router = express.Router()
 
-const {insertUser, getUserByEmail, getUserById} = require('../model/user/User.model');
+const {insertUser, getUserByEmail, getUserById, updatePassword} = require('../model/user/User.model');
 const {hashPassword, comparePassword} = require('../helpers/bcrypt.helper');
 const {createAccessJWT, createRefreshJWT} = require('../helpers/jwt.helper');
 const {userAuthorization} = require('../middleware/authorization.middleware');
@@ -114,9 +114,28 @@ router.patch('/reset-password', async (req, res) => {
 
     const getPin = await getPinByEmailPin(email, pin);
         if(getPin._id){
+            const dbDate = getPin.addedAt
+            const expiresIn = 1
+            let expDate = dbDate.setDate(dbDate.getDate() + expiresIn);
 
+            const today = new Date();
+
+            if(today > expDate){
+                return res.json({status: 'error', message: 'Invalid or expired pin'})
+            }
+
+            // encrypt the new pass
+            const hashedPass = await hashPassword(newPassword);
+
+            const user = await updatePassword(email, hashedPass);
+
+            if(user._id){
+    return res.json({
+        status: 'success', message: "Your password was updated",
+                });
+            }
         }
-    res.json(getPin);
+    res.json({status: 'error', message: "Unable to update your password"});
 });
 
 module.exports = router;

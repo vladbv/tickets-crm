@@ -18,7 +18,7 @@ Content-Type: application/json
 
 {
 "email": "vladb2368@gmail.com",
-"password": "123456789"
+"password": "password1"
 }
 
 ### User sing up endpoint
@@ -63,7 +63,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InZsYWRiMjM2OEBn
 POST http://localhost:3001/v1/user/reset-password
 Content-Type: application/json 
 
-{
+{ 
    "email": "vladb2368@gmail.com"
 }
 
@@ -74,6 +74,6 @@ Content-Type: application/json
 
 {
    "email": "vladb2368@gmail.com",
-   "pin" : "493067",
-   "newPassword": "passw2ord1"
+   "pin" : "811906",
+   "newPassword": "password1"
 }
