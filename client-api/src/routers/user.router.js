@@ -6,7 +6,7 @@ const {insertUser, getUserByEmail, getUserById, updatePassword} = require('../mo
 const {hashPassword, comparePassword} = require('../helpers/bcrypt.helper');
 const {createAccessJWT, createRefreshJWT} = require('../helpers/jwt.helper');
 const {userAuthorization} = require('../middleware/authorization.middleware');
-const { setPasswordRestPin, getPinByEmailPin } = require("../model/reset-pin/resetPin.model");
+const { setPasswordRestPin, getPinByEmailPin, deletePin} = require("../model/reset-pin/resetPin.model");
 const { emailProcessor } = require("../helpers/email.helper");
 
 
@@ -95,7 +95,7 @@ router.post('/reset-password', async (req, res) => {
  
     if(user && user._id){
         const setPin = await setPasswordRestPin(email)
-        await emailProcessor(email, setPin.pin)
+        await emailProcessor({email, pin: setPin.pin, type: "request-new-password" })
        
             return res.json({status: "success", 
             messsage: "If the email exists in our database, it will receive a pin."
@@ -130,6 +130,11 @@ router.patch('/reset-password', async (req, res) => {
             const user = await updatePassword(email, hashedPass);
 
             if(user._id){
+
+        // sending e-mail notification
+        await emailProcessor({email,  type: "password-update-success"})
+                deletePin(email, pin);
+
     return res.json({
         status: 'success', message: "Your password was updated",
                 });

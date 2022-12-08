@@ -39,7 +39,25 @@ const getPinByEmailPin = (email, pin) => {
 
 };
 
+
+const deletePin = (email, pin) => {
+  return new Promise((resolve, reject) => {
+    try{
+      ResetPinSchema.findOneAndDelete({email, pin}, (error, data) => {
+        if(error) {
+          console.log(error)
+        }
+
+      });
+    } catch(err){
+      console.log(err)
+    }
+  });
+
+};
+
 module.exports = {    
  setPasswordRestPin,
- getPinByEmailPin
+ getPinByEmailPin,
+ deletePin,
 }

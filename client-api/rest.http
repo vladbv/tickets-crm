@@ -18,10 +18,10 @@ Content-Type: application/json
 
 {
 "email": "vladb2368@gmail.com",
-"password": "password1"
+"password": "password2"
 }
 
-### User sing up endpoint
+### User sign up endpoint
 POST http://localhost:3001/v1/user
 Content-Type: application/json
 
@@ -74,6 +74,6 @@ Content-Type: application/json
 
 {
    "email": "vladb2368@gmail.com",
-   "pin" : "811906",
-   "newPassword": "password1"
+   "pin" : "884316",
+   "newPassword": "password2"
 }

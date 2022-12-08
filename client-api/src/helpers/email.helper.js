@@ -31,16 +31,35 @@ return new Promise(async  (resolve, reject) => {
 
     }
 
-const emailProcessor = (email, pin) => {
+const emailProcessor = ({email, pin, type}) => {
+    let info = '';
+    switch(type) {
+        case "request-new-password":
+                 info = {
+                from: '"CRM 👻" <foo@example.com>', // sender address
+                to: email, // list of receivers
+                subject: "Password reset pin", // Subject line
+                text: "Here is your password reset pin " + pin + " This pin will expire in one day." , // plain text body
+                html: `Here is your pin: ${pin}`, // html body
+              }
+              send(info);
+        break;
 
-    const info = {
-        from: '"CRM 👻" <foo@example.com>', // sender address
-        to: email, // list of receivers
-        subject: "Password reset pin", // Subject line
-        text: "Here is your password reset pin " + pin + " This pin will expire in one day." , // plain text body
-        html: `Here is your pin: ${pin}`, // html body
-      }
-      send(info);
+        case "password-update-success":
+            info = {
+            from: '"CRM 👻" <foo@example.com>', // sender address
+            to: email, // list of receivers
+            subject: "Password is updated", // Subject line
+            text: "Your password has been updated" , // plain text body
+            html: `Your password has been updated`, // html body
+          }
+          send(info);
+        break;
+        
+        default: 
+        break;
+    }
+
 }
 
 module.exports = {emailProcessor}
