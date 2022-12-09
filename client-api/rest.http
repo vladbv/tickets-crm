@@ -18,7 +18,7 @@ Content-Type: application/json
 
 {
 "email": "vladb2368@gmail.com",
-"password": "password2"
+"password": "password6"
 }
 
 ### User sign up endpoint
@@ -74,6 +74,6 @@ Content-Type: application/json
 
 {
    "email": "vladb2368@gmail.com",
-   "pin" : "884316",
-   "newPassword": "password2"
+   "pin" : "072167",
+   "newPassword": "password6"
 }

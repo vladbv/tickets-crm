@@ -8,7 +8,7 @@ const {createAccessJWT, createRefreshJWT} = require('../helpers/jwt.helper');
 const {userAuthorization} = require('../middleware/authorization.middleware');
 const { setPasswordRestPin, getPinByEmailPin, deletePin} = require("../model/reset-pin/resetPin.model");
 const { emailProcessor } = require("../helpers/email.helper");
-
+const { resetPassReqValidation, updatePassValidation } = require('../middleware/formValidation.middleware');
 
 router.all('/',  (req, res, next) => { 
 //res.json({message: "return form user router"})
@@ -88,7 +88,7 @@ router.post("/login", async (req, res) => {
 });
 
 
-router.post('/reset-password', async (req, res) => {
+router.post('/reset-password', resetPassReqValidation, async (req, res) => {
     const {email} = req.body;
     
     const user = await getUserByEmail(email)
@@ -109,7 +109,7 @@ router.post('/reset-password', async (req, res) => {
 
 });
 
-router.patch('/reset-password', async (req, res) => {
+router.patch('/reset-password', updatePassValidation, async (req, res) => {
     const {email, pin, newPassword} = req.body;
 
     const getPin = await getPinByEmailPin(email, pin);
