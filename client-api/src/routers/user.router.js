@@ -143,4 +143,21 @@ router.patch('/reset-password', updatePassValidation, async (req, res) => {
     res.json({status: 'error', message: "Unable to update your password"});
 });
 
+// Logging out user and invalidating jwts
+// 1. We get the JWT and verify
+// 2. we delete accessJWT from redis database
+// 3. we delete refreshJWT from mongo
+router.delete('/logout', userAuthorization, async (req, res) => {
+    
+    const {authorization} = req.headers;
+
+    const _id = req.userId
+    
+    // const userProf = await getUserById(_id)
+
+    res.json({ authorization })
+})
+
+
+
 module.exports = router;

@@ -21,6 +21,8 @@ All the user API router follows `/v1/user/`
 | 3 | `/v1/user/reset-password`         | PUT   | TODO   | No   | Replace with a new password
 | 4 | `/v1/ticket/{id}`                 | GET   | TODO   | Yes  | Get users info
 |
+| 5 | `/v1/user/logout`                 | DELETE   | TODO   | Yes  | Delete the user accessJWT
+|
 ### Ticket API Resources
 
 All the user API router follows `/v1/ticket/`
