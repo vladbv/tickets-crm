@@ -68,8 +68,8 @@ Content-Type: application/json
 }
 
 
-### Password request endpoint
-PATCH http://localhost:3001/v1/user/reset-password
+### Logout endpoint
+DELETE http://localhost:3001/v1/user/reset-password
 Content-Type: application/json 
 
 {
@@ -77,3 +77,8 @@ Content-Type: application/json
    "pin" : "072167",
    "newPassword": "password6"
 }
+
+
+### Password request endpoint
+PATCH http://localhost:3001/v1/user/logout
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InZsYWRiMjM2OEBnbWFpbC5jb20iLCJpYXQiOjE2NzA3Nzc4NjUsImV4cCI6MTY3MDg2NDI2NX0.58WHg2oxf64m1jMRqwdMmY__UiRK8CdNMewyvtnNbSw
