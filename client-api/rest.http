@@ -80,5 +80,5 @@ Content-Type: application/json
 
 
 ### Password request endpoint
-PATCH http://localhost:3001/v1/user/logout
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InZsYWRiMjM2OEBnbWFpbC5jb20iLCJpYXQiOjE2NzA3Nzc4NjUsImV4cCI6MTY3MDg2NDI2NX0.58WHg2oxf64m1jMRqwdMmY__UiRK8CdNMewyvtnNbSw
+DELETE http://localhost:3001/v1/user/logout
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InZsYWRiMjM2OEBnbWFpbC5jb20iLCJpYXQiOjE2NzE2Mjg3MDYsImV4cCI6MTY3MTcxNTEwNn0._3ARgStLPE33B-qcWT7iND4_vIMqrEutdDPGjbnABl8

@@ -9,6 +9,7 @@ const {userAuthorization} = require('../middleware/authorization.middleware');
 const { setPasswordRestPin, getPinByEmailPin, deletePin} = require("../model/reset-pin/resetPin.model");
 const { emailProcessor } = require("../helpers/email.helper");
 const { resetPassReqValidation, updatePassValidation } = require('../middleware/formValidation.middleware');
+const {deleteJWT} = require('../helpers/redis.helper')
 
 router.all('/',  (req, res, next) => { 
 //res.json({message: "return form user router"})
@@ -144,7 +145,7 @@ router.patch('/reset-password', updatePassValidation, async (req, res) => {
 });
 
 // Logging out user and invalidating jwts
-// 1. We get the JWT and verify
+// 1. We get the JWT and  
 // 2. we delete accessJWT from redis database
 // 3. we delete refreshJWT from mongo
 router.delete('/logout', userAuthorization, async (req, res) => {
@@ -153,6 +154,8 @@ router.delete('/logout', userAuthorization, async (req, res) => {
 
     const _id = req.userId
     
+    deleteJWT(authorization)
+
     // const userProf = await getUserById(_id)
 
     res.json({ authorization })
