@@ -2,7 +2,7 @@ const express = require("express")
 const {route} = require("./ticket.router");
 const router = express.Router()
 
-const {insertUser, getUserByEmail, getUserById, updatePassword} = require('../model/user/User.model');
+const {insertUser, getUserByEmail, getUserById, updatePassword, storeUserRefreshJWT} = require('../model/user/User.model');
 const {hashPassword, comparePassword} = require('../helpers/bcrypt.helper');
 const {createAccessJWT, createRefreshJWT} = require('../helpers/jwt.helper');
 const {userAuthorization} = require('../middleware/authorization.middleware');
@@ -157,8 +157,11 @@ router.delete('/logout', userAuthorization, async (req, res) => {
     deleteJWT(authorization)
 
     // const userProf = await getUserById(_id)
-
-    res.json({ authorization })
+ const result = await storeUserRefreshJWT(_id, '');
+    if(result._id){
+       return res.json({status: 'success', message: 'Successfully logged out user'})
+    }
+    res.json({ status: 'error', message: 'Unable to log out'})
 })
 
 

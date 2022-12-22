@@ -20,7 +20,7 @@ const createAccessJWT = async (email, _id) => {
 const createRefreshJWT = async (email, _id) => {
   try {
     const refreshJWT = jwt.sign({ email }, process.env.JWT_REFRESH_SECRET, {
-      expiresIn: "30d",
+      expiresIn: "20m",
     });
 
     await storeUserRefreshJWT(_id, refreshJWT);
