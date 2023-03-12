@@ -142,7 +142,7 @@ router.patch('/reset-password', updatePassValidation, async (req, res) => {
             }
         }
     res.json({status: 'error', message: "Unable to update your password"});
-});
+}); 
 
 // Logging out user and invalidating jwts
 // 1. We get the JWT and  
