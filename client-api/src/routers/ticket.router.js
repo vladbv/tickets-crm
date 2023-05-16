@@ -10,7 +10,7 @@ next();
 
 
 router.post('/', async (req, res) => {
-
+try{
     const {subject, sender, message} = req.body;
 
     const ticketObj = {
@@ -25,12 +25,21 @@ router.post('/', async (req, res) => {
     }
 
     const result = await insertTicket(ticketObj)
+    console.log(result)
     if(result._id) {
-        return res.json({status: 'success', message: 'New ticket has been created'})
+        return res.json({ 
+            status: 'success', 
+            message: 'New ticket has been created'
+            })
     }
-    console.log(req.body)
-
-    res.json({status: 'error', message: 'Unable to create a ticket, please try again later'})
+    res.json({ 
+        status: 'error', 
+        message: 'Unable to create, please try again'
+        })
+} catch(error){
+    res.json({status: 'error', message: error.message })
+}
+  
 }); 
 
 module.exports = router;
