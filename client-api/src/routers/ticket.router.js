@@ -71,4 +71,27 @@ router.get('/', userAuthorization, async (req, res) => {
       
     }); 
 
+// Getting a specific ticket
+router.get('/:_id', userAuthorization, async (req, res) => {
+    try{
+        const { _id } = req.params; 
+        const clientId = req.userId;
+            const result = await getTicketById(_id, clientId)
+
+        console.log(result)
+    
+        
+            return res.json({ 
+                status: 'success', 
+                result,
+            })
+      
+            
+    } catch(error){
+        res.json({status: 'error', message: error.message })
+    }
+      
+    }); 
+
+
 module.exports = router;
