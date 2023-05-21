@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const {insertTicket, getTickets} = require('../model/ticket/Ticket.model')
+const {insertTicket, getTicketById, getTickets, updateTicketById} = require('../model/ticket/Ticket.model')
 const {userAuthorization} = require('../middleware/authorization.middleware')
 
 
@@ -92,6 +92,34 @@ router.get('/:_id', userAuthorization, async (req, res) => {
     }
       
     }); 
+
+// updating a specific ticket
+router.put('/:_id', userAuthorization, async (req, res) => {
+    try{
+        const {message, sender} = req.body;
+        const { _id } = req.params; 
+        const clientId = req.userId;
+
+        const result = await updateTicketById({_id, message, sender});
+
+        if(result._id) {
+            return res.json({
+                status: 'success',
+                message: 'Your message is updated'
+            })
+        }
+
+        res.json({
+            status: 'error',
+            message: 'Unable to update your message '
+        });
+            
+    } catch(error){
+        res.json({status: 'error', message: error.message })
+    }
+      
+    }); 
+
 
 
 module.exports = router;

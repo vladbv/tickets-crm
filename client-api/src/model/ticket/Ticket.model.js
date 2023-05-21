@@ -37,7 +37,35 @@ const insertTicket = (ticketObj) => {
             try {
                 TicketSchema
                 .find({_id, clientId})
-                .then(data => 
+                .then((data) => 
+                    resolve(data))
+                .catch(error => reject(error))
+            }
+            catch(err){
+        
+            }
+      
+        })
+    }
+
+    const updateTicketById = ({_id, message, sender}) => {
+        return new Promise((resolve, reject) => {
+            try {
+                TicketSchema
+                .findOneAndUpdate(
+                    { _id },
+                { 
+                    status: 'Pending operator response',
+                    $push: {
+                        conversations: {
+                            message,
+                            sender
+                        }
+                    },
+                },
+                {new: true}
+                    )
+                .then((data) => 
                     resolve(data))
                 .catch(error => reject(error))
             }
@@ -51,5 +79,7 @@ const insertTicket = (ticketObj) => {
 
     module.exports = {
         insertTicket,
-        getTickets
+        getTickets,
+        getTicketById,
+        updateTicketById
     }
