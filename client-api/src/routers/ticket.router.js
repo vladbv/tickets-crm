@@ -120,6 +120,32 @@ router.put('/:_id', userAuthorization, async (req, res) => {
       
     }); 
 
+    // close a specific ticket
+router.patch('/close-ticket/:_id', userAuthorization, async (req, res) => {
+    try{
+        const { _id } = req.params; 
+        const clientId = req.userId;
+
+        const result = await updateStatusClose({_id, clientId, message, sender});
+
+        if(result._id) {
+            return res.json({
+                status: 'success',
+                message: 'Your message is updated'
+            })
+        }
+
+        res.json({
+            status: 'error',
+            message: 'Unable to update your message '
+        });
+            
+    } catch(error){
+        res.json({status: 'error', message: error.message })
+    }
+      
+    }); 
+
 
 
 module.exports = router;
