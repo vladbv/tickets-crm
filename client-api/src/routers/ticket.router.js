@@ -153,20 +153,15 @@ router.delete('/close-ticket/:_id', userAuthorization, async (req, res) => {
         const { _id } = req.params; 
         const clientId = req.userId;
 
-        const result = await deleteTicket({_id, clientId});
 
-        if(result._id) {
+        const result = await deleteTicket({_id, clientId});
+        console.log(result)
+
             return res.json({
                 status: 'success',
                 message: 'The ticket has been deleted'
             })
-        }
 
-        res.json({
-            status: 'error',
-            message: 'Unable to update the ticket '
-        });
-            
     } catch(error){
         res.json({status: 'error', message: error.message })
     }
