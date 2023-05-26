@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const {insertTicket, getTicketById, getTickets, updateTicketById, updateStatusClose, deleteTicket} = require('../model/ticket/Ticket.model')
 const {userAuthorization} = require('../middleware/authorization.middleware')
-
+const {createNewTicketValidation} = require('../middleware/formValidation.middleware')
 
 router.all('/', (req, res, next) => {
 // res.json({message: "return form ticket router"})
@@ -12,7 +12,7 @@ next();
 });
 
 
-router.post('/', userAuthorization, async (req, res) => {
+router.post('/', createNewTicketValidation, userAuthorization, async (req, res) => {
 try{
     const {subject, sender, message} = req.body;
 
