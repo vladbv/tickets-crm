@@ -48,13 +48,32 @@ const longStr = Joi.string().min(2).max(1000);
         console.log(value)
 
         if(value.error){
-            console.log(value.error)
+            return res.json({status: 'error', message: value.error.message})
         }
-        res.json(value)
+
+        next()
+    }
+
+
+    const replyTicketValidation = (req, res, next) => {
+        const schema = Joi.object({
+            sender: shortStr.required(),
+            message: longStr.required(),
+        })
+
+        const value = schema.validate(req.body)
+
+        if(value.error){
+            console.log(value.error)
+            return res.json({status: 'error', message: value.error.message})
+        }
+
+        next()
     }
 
     module.exports = {
         resetPassReqValidation,
         updatePassValidation,
-        createNewTicketValidation
+        createNewTicketValidation,
+        replyTicketValidation
     }

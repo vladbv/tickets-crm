@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const {insertTicket, getTicketById, getTickets, updateTicketById, updateStatusClose, deleteTicket} = require('../model/ticket/Ticket.model')
 const {userAuthorization} = require('../middleware/authorization.middleware')
-const {createNewTicketValidation} = require('../middleware/formValidation.middleware')
+const {createNewTicketValidation, replyTicketValidation} = require('../middleware/formValidation.middleware')
 
 router.all('/', (req, res, next) => {
 // res.json({message: "return form ticket router"})
@@ -94,7 +94,7 @@ router.get('/:_id', userAuthorization, async (req, res) => {
     }); 
 
 // updating a specific ticket
-router.put('/:_id', userAuthorization, async (req, res) => {
+router.put('/:_id', replyTicketValidation, userAuthorization, async (req, res) => {
     try{
         const {message, sender} = req.body;
         const { _id } = req.params; 
