@@ -3,11 +3,15 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import {Provider} from 'react-redux'
+import store from './store'
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.Fragment>
+    <Provider store={store}>
     <App />
+    </Provider>
   </React.Fragment>,
   document.getElementById('root')
 );
