@@ -17,9 +17,19 @@ const ticketListsSlice = createSlice({
                 state.isLoading = false
                 state.tickets = action.payload
         },
-        fetchTicketFail: (state, action) => {
-            state.isLoading = action.payload
-            state.tickets = action.payload
+        fetchTicketFail: (state, {payload}) => {
+            state.isLoading = false;
+            state.tickets = payload;
         },
     }
 })
+
+const {reducer, actions} = ticketListsSlice;
+
+
+export const {
+fetchTicketFail,
+fetchTicketLoading,
+fetchTicketSuccess
+} = actions;
+export default reducer;
