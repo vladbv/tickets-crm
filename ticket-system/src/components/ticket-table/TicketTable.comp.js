@@ -1,8 +1,11 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import {Table} from 'react-bootstrap'
 import PropTypes from 'prop-types'
 import {Link} from 'react-router-dom'
-export const TicketTable = ({tickets}) => {
+export const TicketTable = () => {
+
+	const {tickets, isLoading, error} = useSelector(state => state.tickets)
 return( 
 <Table striped bordered hover>
 	<thead>
@@ -46,7 +49,4 @@ return(
 
 }
 
-TicketTable.propTypes = { 
-    tickets: PropTypes.array.isRequired,
 
-}
