@@ -1,11 +1,13 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import {Table} from 'react-bootstrap'
-import PropTypes from 'prop-types'
 import {Link} from 'react-router-dom'
 export const TicketTable = () => {
 
 	const {tickets, isLoading, error} = useSelector(state => state.tickets)
+
+if (isLoading) return <h2>Loading... </h2>
+if (error) return <h2>Error...</h2>
 return( 
 <Table striped bordered hover>
 	<thead>
@@ -19,17 +21,17 @@ return(
 	</thead>
 	<tbody>
 	{tickets.length ? (tickets.map((row) =>   
-<tr>
-<td>{row.id}</td>
+<tr key={row._id}>
+<td>{row._id}</td>
 	<td>
- <Link to={`/ticket/${row.id}`}>
+ <Link to={`/ticket/${row._id}`}>
         {row.subject}
 </Link>
         </td>
 
 
 	<td>{row.status}</td>
-	<td>{row.addedAt}</td>
+	<td>{row.openAt}</td>
 	</tr>
 	))
 		:(
