@@ -10,12 +10,13 @@ const ticketListsSlice = createSlice({
     name: 'ticketLists',
     initialState,
     reducers: {
-        fetchTicketLoading:(state) => {
-            state.isLoading = true
+        fetchTicketLoading: (state) => {
+            state.isLoading = true;
         },
         fetchTicketSuccess: (state, action) => {
-                state.isLoading = false
                 state.tickets = action.payload
+
+                state.isLoading = false;
         },
         fetchTicketFail: (state, {payload}) => {
             state.isLoading = false;
