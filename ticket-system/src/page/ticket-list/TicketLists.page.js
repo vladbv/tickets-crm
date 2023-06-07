@@ -10,22 +10,12 @@ import {Link} from 'react-router-dom'
 export const TicketLists = () => {
     const dispatch = useDispatch()
     const [str, setStr] = useState('')
-	const [dispTicket, setDispTicket] = useState(tickets);
     useEffect( () => {
         dispatch(fetchAllTickets());
-    }, [str, dispTicket]);
+    }, [str, dispatch]);
 
-const handleOnChange = (e) => {
-	const {value} = e.target;
-    setStr(value);
-	searchTicket(value);
-console.log(e.target);
-    };
-	const searchTicket = (sttr) => {
-		const displayTickets = tickets.filter( (row) => row.subject.toLowerCase().includes(sttr.toLowerCase()))
-        	setDispTicket(displayTickets)
-   
-		}
+
+
 return (
 <Container>
 <Row>
@@ -43,13 +33,13 @@ return (
 </Link>
     </Col>
     <Col className="text-right">
-    <SearchForm handleOnChange={handleOnChange} str={str} />
+    <SearchForm />
     </Col>
     </Row>
     <hr />
 <Row>
 <Col>
-<TicketTable tickets={dispTicket} />
+<TicketTable  />
 
     </Col>
     </Row>
