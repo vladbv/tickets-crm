@@ -1,12 +1,16 @@
 import React from 'react'
 import {useDispatch} from 'react-redux'
+import {filterSearchTicket} from '../../page/ticket-list/ticketsActions'
 import {Form, Row, Col} from 'react-bootstrap'
 
 export const SearchForm = () => {
 
+    const dispatch = useDispatch();
+
     const handleOnChange = (e) => {
         const {name, value} = e.target
-        console.log(e.target )
+        
+        dispatch(filterSearchTicket(value))
     }
     return (
     <div>

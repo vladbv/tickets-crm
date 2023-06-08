@@ -4,7 +4,7 @@ import {Table} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
 export const TicketTable = () => {
 
-	const {tickets, isLoading, error} = useSelector((state) => state.tickets)
+	const { searchTicketList, isLoading, error} = useSelector((state) => state.tickets)
 
 if (isLoading) return <h2>Loading... </h2>
 if (error) return <h2>Error...</h2>
@@ -20,8 +20,8 @@ return(
 	</tr>
 	</thead>
 	<tbody>
-	{ tickets.length ? (
-		tickets.map((row) =>   (
+	{ searchTicketList.length ? (
+		searchTicketList.map((row) =>   (
 <tr key={row._id}>
 <td>{row._id}</td>
 	<td>

@@ -24,3 +24,8 @@ dispatch(fetchTicketSuccess(result.data.result))
 }
 
 }
+
+
+export const filterSearchTicket = (str) => (dispatch) => {
+    dispatch(searchTickets(str))
+}
