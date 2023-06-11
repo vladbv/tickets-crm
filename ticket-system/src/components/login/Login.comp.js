@@ -2,15 +2,49 @@ import React, {useState} from 'react'
 
 import ReactDOM from 'react-dom'
 
+import {useDispatch} from 'react-redux'
+
 import PropTypes from 'prop-types'
 
 import {Container, Row, Col, Button, Form} from 'react-bootstrap'
 
-export const LoginForm  = ({handleOnChange, formSwitcher, handleOnSubmit, email, pass}) => {
+import { loginPending, loginSuccess, loginFail } from './loginSlice'
+
+export const LoginForm  = ({formSwitcher, }) => {
+	const dispatch = useDispatch();
+
+	const [email, setEmail] = useState('');
+	const [password, setPassword] = useState('');
 
 
+	const handleOnChange = e => {
+const {name, value} = e.target;
+		console.log(name, value);
+		switch(name){
+			case 'email':
+				setEmail(value);
+	break;
+			case 'password': 
+				setPassword(value);
+			default:
+			break;
+	}
+	}
 
-return(
+	const handleOnSubmit = (e) => {
+		e.preventDefault();
+		
+				if(!email || !password){
+		alert("Fill up the form");
+				}
+		
+				// Submitting the form
+				console.log(email, password);
+			}
+
+return (
+
+	
 	<Container>
 	<Row>
 <Col className="p-5">
@@ -26,7 +60,7 @@ return(
 	</Form.Group>
 <Form.Group>
 <Form.Label>Password</Form.Label> 
-	<Form.Control type="password" name="password" value={pass} required onChange={handleOnChange} placeholder="Enter your password"  />
+	<Form.Control type="password" name="password" value={password} required onChange={handleOnChange} placeholder="Enter your password"  />
 
 	</Form.Group>	
 
@@ -47,10 +81,7 @@ return(
 }
 
 LoginForm.propTypes = {
-	handleOnChange: PropTypes.func.isRequired,
-	handleOnSubmit: PropTypes.func.isRequired,
+
 	formSwitcher: PropTypes.func.isRequired,
-email: PropTypes.string.isRequired,
-	pass: PropTypes.string.isRequired,
 
 }
